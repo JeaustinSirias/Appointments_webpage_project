@@ -2,7 +2,7 @@ from django import forms
 from .models import appointment
 
 
-class citeForm(forms.ModelForm):
+class CiteForm(forms.ModelForm):
 
     class Meta:
         model = appointment
@@ -12,6 +12,6 @@ class citeForm(forms.ModelForm):
         ]
 
         labels = {
-            'name' = 'Nombre',
-            'date' = 'Fecha',
+            'name': 'Nombre',
+            'date': 'Fecha',
         }
