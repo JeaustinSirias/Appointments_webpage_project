@@ -8,7 +8,7 @@ with open('LICENSE') as legal:
     license = legal.read()
 
 setup(
-    name='civil-register',
+    name='civil-registering',
     packages=['test'],
     entry_points={'console_scripts': ['runfile = source.build:main']},
     version='1.0.0',
