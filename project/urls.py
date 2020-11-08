@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from application.views import sample
 from application import views
+from django.contrib.auth import views as auth_views
 
 # Do no forget to add the '/' in paths' names
 urlpatterns = [
@@ -25,5 +26,9 @@ urlpatterns = [
     path('newcite/', views.new_appointment, name='new'),
     path('deletecite/', views.sample, name='delete'),
     path('checkout/', views.sample),
+    path(r'^login/$', views.login, name='login'),
+    path(r'^logout/$', views.logout, name='logout'),
+    
+
 
 ]
