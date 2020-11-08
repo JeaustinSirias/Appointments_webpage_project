@@ -7,8 +7,9 @@ def sample(request):
     date = datetime.datetime.utcnow()
     return HttpResponse('Vista no asignada\nHora: %s' %date)
 
-def homepage(render):
-    return 
+def homepage(request):
+
+    return render(request, 'homepage.html')
 
 def new_appointment(request):
     return
