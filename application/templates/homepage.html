@@ -1,0 +1,16 @@
+{% load widget_tweaks %}
+  <div class="container">
+
+    <body>
+        {% include "login.html" %}
+    <h1 style="color: red">
+        Bienvenido a la página de citas del registro civil de Kyrat
+    </h1> 
+    <a href="{% url 'new' %}">
+        <h2> Agendar una cita </h2> 
+    </a>
+    <a href="{% url 'delete' %}">
+        <h2> Eliminar una cita </h2>  
+    </a>
+    <body>
+    </div>

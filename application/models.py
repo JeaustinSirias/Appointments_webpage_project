@@ -9,3 +9,4 @@ class user(models.Model):
 class appointment(models.Model):
     date = models.DateField()
     name = models.CharField(max_length=30)
+    

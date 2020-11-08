@@ -21,8 +21,9 @@ from application import views
 # Do no forget to add the '/' in paths' names
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('homepage/', views.sample),
+    path('homepage/', views.homepage),
     path('newcite/', views.new_appointment, name='new'),
-    path('deletecite/', views.sample),
+    path('deletecite/', views.sample, name='delete'),
     path('checkout/', views.sample),
+
 ]
