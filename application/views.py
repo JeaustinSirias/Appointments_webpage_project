@@ -1,6 +1,5 @@
 import datetime
 from django.http import HttpResponse
-from django 
 
 def sample(request):
     '''Displays a default view'''
