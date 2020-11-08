@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from application.views import sample
+from application import views
 
 # Do no forget to add the '/' in paths' names
 urlpatterns = [
@@ -25,4 +26,3 @@ urlpatterns = [
     path('deletecite/', sample),
     path('checkout/', sample),
 ]
- 

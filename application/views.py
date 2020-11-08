@@ -1,6 +1,6 @@
 import datetime
 from django.http import HttpResponse
-from django 
+from django
 
 def sample(request):
     '''Displays a default view'''
@@ -8,6 +8,8 @@ def sample(request):
     return HttpResponse('Vista no asignada\nHora: %s' %date)
 
 def new_appointment(request):
+    
+
     return
 
 def delete_appointment(request):
@@ -15,6 +17,3 @@ def delete_appointment(request):
 
 def check_appointment(request):
     return
-
-
-
