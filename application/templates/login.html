@@ -1,27 +1,10 @@
-<html>
-    <style>
-        #login {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
+{% block title %}Login{% endblock %}
 
-        #login li {
-            display: inline;
-            margin: 0 8px;
-        }
-    </style>
-    <body>
-        <ul id="login">
-
-            <a href="{% url 'new' %}">
-            <li>Registrarse</li>
-            </a>
-
-            <a href="{% url 'new' %}">
-            <li>Acceder</li>
-            </a>
-
-        </ul>
-    </body>
-</html>
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+{% endblock %}

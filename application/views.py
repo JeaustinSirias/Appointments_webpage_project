@@ -1,9 +1,9 @@
 import datetime
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import appointment
-from .forms import CiteForm
-
+from .forms import CiteForm, SignUpForm
+from django.contrib.auth import login, authenticate
 
 def sample(request):
     '''Displays a default view'''
@@ -11,7 +11,6 @@ def sample(request):
     return HttpResponse('Vista no asignada\nHora: %s' %date)
 
 def homepage(request):
-
     return render(request, 'homepage.html')
 
 def new_appointment(request):
@@ -46,8 +45,17 @@ def new_appointment(request):
             }
         )
 
-def delete_appointment(request):
-    return
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('homepage')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
 
-def check_appointment(request):
-    return
