@@ -29,7 +29,7 @@ urlpatterns = [
     path('deletecite/', views.sample, name='delete'),
     path('checkout/', views.sample),
     path('signup/', views.signup, name='signup'),
-    #path(r'^login/$', auth_views.login, name='login'),
-
+    path('login/', views.Login, name='login'),
+    path('logout/', views.Logout, name='logout'),
 ]
 

@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import appointment
 from .forms import CiteForm, SignUpForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
 
 def sample(request):
     '''Displays a default view'''
@@ -14,6 +15,7 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 def new_appointment(request):
+    #if request.User.is_authenticated():
     new_form = CiteForm()
     if request.method == 'POST':
         filled_form = CiteForm(request.POST)
@@ -59,3 +61,33 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+def Login(request):
+    # Creamos el formulario de autenticación vacío
+    form = AuthenticationForm()
+    if request.method == "POST":
+        # Añadimos los datos recibidos al formulario
+        form = AuthenticationForm(data=request.POST)
+        # Si el formulario es válido...
+        if form.is_valid():
+            # Recuperamos las credenciales validadas
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # Verificamos las credenciales del usuario
+            user = authenticate(username=username, password=password)
+
+            # Si existe un usuario con ese nombre y contraseña
+            if user is not None:
+                # Hacemos el login manualmente
+                login(request, user)
+                # Y le redireccionamos a la portada
+                return redirect('/homepage')
+
+    # Si llegamos al final renderizamos el formulario
+    return render(request, "login.html", {'form': form})
+
+def Logout(request):
+    # Finalizamos la sesión
+    logout(request)
+    # Redireccionamos a la portada
+    return redirect('/homepage')
