@@ -1,0 +1,11 @@
+{% load widget_tweaks %}
+
+<div class="container">
+    <h1>Sus citas</h1>
+        {% for name, date in appoint_dict.items %}
+        <h3>
+            Hay una cita a nombre de {{name}}, el {{date}}.
+        </h3>
+        {% endfor %}
+
+</div>

@@ -15,7 +15,7 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 def new_appointment(request):
-    #if request.User.is_authenticated():
+    #if request.user.is_authenticated():
     new_form = CiteForm()
     if request.method == 'POST':
         filled_form = CiteForm(request.POST)
@@ -81,7 +81,7 @@ def Login(request):
                 # Hacemos el login manualmente
                 login(request, user)
                 # Y le redireccionamos a la portada
-                return redirect('/homepage')
+                return redirect('/newcite')
 
     # Si llegamos al final renderizamos el formulario
     return render(request, "login.html", {'form': form})
@@ -91,3 +91,17 @@ def Logout(request):
     logout(request)
     # Redireccionamos a la portada
     return redirect('/homepage')
+
+def show_appointment(request):
+
+    appoint_dict = {}
+    for app in appointment.objects.all():
+        appoint_dict[app.name] = app.date
+      
+    return render(
+        request,
+        'checklist.html',
+        {
+            'appoint_dict': appoint_dict,
+        }
+    )

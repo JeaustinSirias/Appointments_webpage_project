@@ -1,7 +1,7 @@
 {% load widget_tweaks %}
 
     <div class="container">
-        <h1>Crear nueva cita</h1>
+        <h1>Creando una cita para obtener su cédula</h1>
 
         <h2>{{ note }}</h2>
 
@@ -18,6 +18,8 @@
 
               <input type="submit" value="Crear cita">
         </form>
+    <hr/>
+    <a href="{% url 'show' %}">Sus citas</a> 
     <hr/>
     <a href="{% url 'logout' %}">Cerrar sesión</a> 
     </div>
