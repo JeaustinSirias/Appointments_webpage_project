@@ -5,9 +5,11 @@ from .models import appointment
 from .forms import CiteForm, SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 def sample(request):
-    '''Displays a default view'''
+    '''Displays a default for not 
+    asigned view'''
     date = datetime.datetime.utcnow()
     return HttpResponse('Vista no asignada\nHora: %s' %date)
 #=========================================================================
@@ -15,15 +17,18 @@ def homepage(request):
     '''A view dedicate to the main page
     creation where is shown all the options
     that users have.
+    
     :param request: the request call
     :return: the HTML page rendering
     '''
     return render(request, 'homepage.html')
 #=========================================================================
+@login_required
 def new_appointment(request):
     '''A view that offers a way to create
     the fillform related to a new appointment asked 
     by an user.
+
     :param render: the request call
     :return: the rendered appointment HTML form
     '''
@@ -31,8 +36,20 @@ def new_appointment(request):
     new_form = CiteForm()
     if request.method == 'POST':
         filled_form = CiteForm(request.POST)
-
         if filled_form.is_valid():
+            cite = filled_form.cleaned_data.get('date')
+            print(cite)
+            for app in appointment.objects.all():
+                if cite == app.date:
+                    note = 'No hay disponibilidad para la fecha %s' %cite
+                    return render(
+                        request,
+                        'new.html',
+                        {
+                            'cite_filled':filled_form,
+                            'note':note
+                        }
+                    )    
             new_cite = filled_form.save()
             note = (
                 'Cita a nombre de: \'{}\' fue creada para la fecha \'{}\' \n'.format(
@@ -62,6 +79,7 @@ def new_appointment(request):
 def signup(request):
     '''A method to allow register a new user 
     to be able to use the appointment features.
+
     :param request: the request call
     :return: the sign up rendered HTML form
     '''
@@ -81,6 +99,7 @@ def signup(request):
 def Login(request):
     '''A method to let previously registered users
     to login by using their username and password.
+
     :param request: the request call object
     :return: the rendered login HTML form
     '''
@@ -112,6 +131,7 @@ def Logout(request):
     '''A standard method to logout
     an user once it has finished its activities
     in the webpage. 
+
     :param request: the request call object
     :return: gets back the user to homepage
     '''
@@ -121,12 +141,16 @@ def Logout(request):
 def show_appointment(request):
     '''An iterative method to show all the listed
     appointments in the DB.
+
     :param request: the request call object
     :return: the appointments rendered HTML list
     '''
     appoint_dict = {}
     for app in appointment.objects.all():
-        appoint_dict[app.name] = app.date
+        appoint_dict[app.name] = {
+            'pk': app.pk,
+            'date': app.date,
+        }
       
     return render(
         request,
@@ -135,3 +159,68 @@ def show_appointment(request):
             'appoint_dict': appoint_dict,
         }
     )
+#=========================================================================
+def modify_appointment(request, id):
+    '''A method to update or modify an appointment 
+    made by an user.
+
+    :param request: the request call object
+    :param id: the primary key of the appointment to modify
+    :return: the rendered appointment HTML update form
+    '''
+    #warnings
+    none_note = 'No hay disponibilidad para la fecha elegida.'
+    invalid_note = 'Solicitud no válida. Vuelva a intentarlo.'
+    success_note = 'Se ha actualizado la cita exitosamente'
+
+    appoint = appointment.objects.get(id=id)
+    renew_form = CiteForm(instance=appoint)
+    #actual_date = renew_form.cleaned_data.get('date')
+    if request.method == 'POST':
+        form = CiteForm(data=request.POST, instance=appoint)
+        if form.is_valid():
+            date = form.cleaned_data.get('date')
+            for item in appointment.objects.all():
+                if date == item.date:
+                    return render(
+                        request, 
+                        'modify.html', 
+                        {
+                            'cite_filled': form,
+                            'note': none_note,
+                        }
+                    )
+            form.save()
+            renew_form = form
+
+        else:
+            return render(
+                request,
+                'modify.html',
+                {
+                    'cite_filled': form,
+                    'note': invalid_note,
+                }
+                )
+
+    return render(
+        request, 
+        'modify.html', 
+        {
+            'cite_filled': renew_form, 
+            'note': success_note,
+        }
+    )
+#=========================================================================
+def delete_appointment(request, id):
+    '''A method for users to delete their
+    linked appointents in case they won't 
+    need them.
+
+    :param request:
+    :param id:
+    :return:
+    '''
+    form = appointment.objects.get(id=id)
+    form.delete()
+    return redirect(to='show')

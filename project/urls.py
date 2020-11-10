@@ -26,10 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('homepage/', views.homepage, name='homepage'),
     path('newcite/', views.new_appointment, name='new'),
+    path('modify-cite/<id>/', views.modify_appointment, name='modify'),
     path('deletecite/', views.sample, name='delete'),
     path('checkout/', views.show_appointment, name='show'),
     path('signup/', views.signup, name='signup'),
     path('login/', views.Login, name='login'),
     path('logout/', views.Logout, name='logout'),
+    path('delete-cite/<id>', views.delete_appointment, name='delete')
 ]
 

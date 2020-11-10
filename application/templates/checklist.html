@@ -2,9 +2,11 @@
 
 <div class="container">
     <h1>Sus citas</h1>
-        {% for name, date in appoint_dict.items %}
+        {% for name, item in appoint_dict.items %}
         <h3>
-            Hay una cita a nombre de {{name}}, el {{date}}.
+            Hay una cita a nombre de {{name}}, el {{item.date}} 
+            <a href="{% url 'modify' item.pk %}">Modificar</a>
+            <a href="{% url 'delete' item.pk %}">Eliminar</a>
         </h3>
         {% endfor %}
 

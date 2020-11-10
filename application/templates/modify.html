@@ -1,13 +1,13 @@
 {% load widget_tweaks %}
 
     <div class="container">
-        <h1 style="color: blue">
-          Creando una cita para obtener su cédula
+        <h1 style="color: purple">
+          Está modificando una cita para obtener su cédula
         </h1>
 
         <h2>{{ note }}</h2>
 
-        <form action="{% url 'new' %}" method="POST">
+        <form action="" method="POST">
               {% csrf_token %}
               {% for field in cite_filled %}
               <div class="form-group">
@@ -18,7 +18,7 @@
               </div>
               {% endfor %}
 
-              <input type="submit" value="Crear cita">
+              <input type="submit" value="Modificar cita">
         </form>
     <hr/>
     <a href="{% url 'show' %}">Sus citas</a> 
