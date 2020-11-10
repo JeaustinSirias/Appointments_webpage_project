@@ -10,10 +10,14 @@ class usuario(models.Model):
 '''
 
 class appointment(models.Model):
+    '''The appointment model with its respective
+    entries and __str__ definition'''
     user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     date = models.DateField()
     name = models.CharField(max_length=30)
 
     def __str__(self):
+        '''A method to display an appointment object
+        as a readable string'''
         return "hay una cita a nombre de %s, el %s" %(self.name, self.date) 
     

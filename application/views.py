@@ -10,11 +10,23 @@ def sample(request):
     '''Displays a default view'''
     date = datetime.datetime.utcnow()
     return HttpResponse('Vista no asignada\nHora: %s' %date)
-
+#=========================================================================
 def homepage(request):
+    '''A view dedicate to the main page
+    creation where is shown all the options
+    that users have.
+    :param request: the request call
+    :return: the HTML page rendering
+    '''
     return render(request, 'homepage.html')
-
+#=========================================================================
 def new_appointment(request):
+    '''A view that offers a way to create
+    the fillform related to a new appointment asked 
+    by an user.
+    :param render: the request call
+    :return: the rendered appointment HTML form
+    '''
     #if request.user.is_authenticated():
     new_form = CiteForm()
     if request.method == 'POST':
@@ -46,8 +58,13 @@ def new_appointment(request):
                 'cite_filled': new_form,
             }
         )
-
+#=========================================================================
 def signup(request):
+    '''A method to allow register a new user 
+    to be able to use the appointment features.
+    :param request: the request call
+    :return: the sign up rendered HTML form
+    '''
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -60,8 +77,13 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-
+#=========================================================================
 def Login(request):
+    '''A method to let previously registered users
+    to login by using their username and password.
+    :param request: the request call object
+    :return: the rendered login HTML form
+    '''
     # Creamos el formulario de autenticación vacío
     form = AuthenticationForm()
     if request.method == "POST":
@@ -85,15 +107,23 @@ def Login(request):
 
     # Si llegamos al final renderizamos el formulario
     return render(request, "login.html", {'form': form})
-
+#=========================================================================
 def Logout(request):
-    # Finalizamos la sesión
+    '''A standard method to logout
+    an user once it has finished its activities
+    in the webpage. 
+    :param request: the request call object
+    :return: gets back the user to homepage
+    '''
     logout(request)
-    # Redireccionamos a la portada
     return redirect('/homepage')
-
+#=========================================================================
 def show_appointment(request):
-
+    '''An iterative method to show all the listed
+    appointments in the DB.
+    :param request: the request call object
+    :return: the appointments rendered HTML list
+    '''
     appoint_dict = {}
     for app in appointment.objects.all():
         appoint_dict[app.name] = app.date
