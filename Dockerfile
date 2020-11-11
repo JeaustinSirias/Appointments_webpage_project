@@ -12,6 +12,10 @@ COPY requirements.txt /proyecto/
 RUN pip install -r requirements.txt
 COPY . /proyecto/
 
+#LO QUE FALTA ES UBICAR LA CARPEYA /PROYECTO CUANDO EL 
+#CONTENEDOR ESTE CORRIENDO Y usar make run para ver si 
+#funciona O BIEN, VER SI YA LE EJECUTA EL SERVER DE UNA
+
 EXPOSE 8000
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
