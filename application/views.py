@@ -17,7 +17,7 @@ def homepage(request):
     '''A view dedicate to the main page
     creation where is shown all the options
     that users have.
-    
+
     :param request: the request call
     :return: the HTML page rendering
     '''
@@ -96,48 +96,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 #=========================================================================
-def Login(request):
-    '''A method to let previously registered users
-    to login by using their username and password.
-
-    :param request: the request call object
-    :return: the rendered login HTML form
-    '''
-    # Creamos el formulario de autenticación vacío
-    form = AuthenticationForm()
-    if request.method == "POST":
-        # Añadimos los datos recibidos al formulario
-        form = AuthenticationForm(data=request.POST)
-        # Si el formulario es válido...
-        if form.is_valid():
-            # Recuperamos las credenciales validadas
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-
-            # Verificamos las credenciales del usuario
-            user = authenticate(username=username, password=password)
-
-            # Si existe un usuario con ese nombre y contraseña
-            if user is not None:
-                # Hacemos el login manualmente
-                login(request, user)
-                # Y le redireccionamos a la portada
-                return redirect('/newcite')
-
-    # Si llegamos al final renderizamos el formulario
-    return render(request, "login.html", {'form': form})
-#=========================================================================
-def Logout(request):
-    '''A standard method to logout
-    an user once it has finished its activities
-    in the webpage. 
-
-    :param request: the request call object
-    :return: gets back the user to homepage
-    '''
-    logout(request)
-    return redirect('/homepage')
-#=========================================================================
+@login_required
 def show_appointment(request):
     '''An iterative method to show all the listed
     appointments in the DB.

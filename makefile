@@ -1,7 +1,7 @@
 #############################################################
 #							    #
-#         Generic webpage Django Project		    #
-#	  Jeaustin Sirias Chacon (jeaustin.sirias@ucr.ac.c) #
+#              Generic webpage Django Project		    #
+#	       Jeaustin Sirias & Felipe Cortes 		    #
 #                     Copyright (C) 2020		    #
 #							    #
 #############################################################
@@ -14,11 +14,7 @@ SOURCE = ./source/
 require: # Install requirements
 	pip install -r requirements.txt
 
-run: # Run without installing
-	python3 -m test
-
-install: # Install and run
-	python3 setup.py install \
-	&& runfile
+run: # Run project
+	python3 manage.py runserver
 
 unittest:

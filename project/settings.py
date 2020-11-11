@@ -26,7 +26,8 @@ SECRET_KEY = 'vn$28a7l#=l$)2bis!25%=vpypeuo5*iu*ln956h^_4vru_ry$'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL = '/homepage'
+LOGOUT_REDIRECT_URL = '/homepage'
 
 
 # Application definition

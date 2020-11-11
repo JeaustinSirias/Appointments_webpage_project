@@ -18,6 +18,20 @@
             <li>Registrarse</li>
             </a>
 
+            <a href="{% url 'login' %}">
+                <li>Ingresar</li>
+            </a>
+    
+
+            {% if user.is_authenticated%}
+            <li>
+                Usuario: {{user.username}}
+            </li>
+            <li>
+                <a href="{% url '/account/logout'}">Cerrar sesión</a>
+            </li>
+            {% endif %}
+
         </ul>
     </body>
 </html>

@@ -13,11 +13,13 @@ class CiteForm(forms.ModelForm):
         fields = [
             'name',
             'date',
+            'dependant'
         ]
 
         labels = {
             'name': 'Nombre',
             'date': 'Fecha',
+            'Asesor': 'Asesor'
         }
 
 class SignUpForm(UserCreationForm):
