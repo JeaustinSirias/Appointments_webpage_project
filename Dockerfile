@@ -8,12 +8,12 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /proyecto
 WORKDIR /proyecto
 RUN pip install --upgrade pip
-COPY requirements.txt /proyecto/
-RUN pip install -r requirements.txt
+COPY Requirements.txt /proyecto/
+RUN pip install -r Requirements.txt
 COPY . /proyecto/
 
-#LO QUE FALTA ES UBICAR LA CARPEYA /PROYECTO CUANDO EL 
-#CONTENEDOR ESTE CORRIENDO Y usar make run para ver si 
+#LO QUE FALTA ES UBICAR LA CARPEYA /PROYECTO CUANDO EL
+#CONTENEDOR ESTE CORRIENDO Y usar make run para ver si
 #funciona O BIEN, VER SI YA LE EJECUTA EL SERVER DE UNA
 
 EXPOSE 8000

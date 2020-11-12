@@ -1,18 +1,86 @@
+<!DOCTYPE HTML>
 {% load widget_tweaks %}
-<div class="container">
-    <body>
-        {% include "logbar.html" %}
-        <h1 style="color: red">
-            Bienvenido a la página de citas del registro civil de Kyrat
-        </h1> 
-        <a href="{% url 'new' %}">
-            <h2> Agendar una cita </h2> 
-        </a>
-        <a href="{% url 'show' %}">
-            <h2> Eliminar una cita </h2>  
-        </a>
-        <a href="{% url 'show' %}">
-            <h2> Modificar una cita </h2>  
-        </a>
-    <body>
-</div>
+{% load crispy_forms_tags %}
+<html>
+
+<head>
+  <title>Kyrat</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/style/style.css" />
+</head>
+<style>
+    #login {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #login li {
+        display: inline;
+        margin: 0 8px;
+    }
+</style>
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="/homepage.html">Bienvenido a la página de citas del registro civil de<span class="logo_colour"> Kyrat</span></a></h1>
+          <h2>Agende su cita pronto</h2>
+        </div>
+      </div>
+      <div id="menubar">
+
+        <body>
+        <ul id="login">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="{% url 'homepage' %}">Principal</a></li>
+
+          {% if user.is_authenticated%}
+          <li>
+              Usuario: {{user.username}}
+          </li>
+          <li>
+              <a href="{% url '/account/logout'}">Cerrar sesión</a>
+          </li>
+
+          {% else %}
+
+            <li><a href="{% url 'signup' %}">Registrarse</a></li>
+            <li><a href="{% url 'login' %}">Ingresar</a></li>
+
+          {% endif %}
+
+
+          <li><a href="/contact.html">Contáctenos</a></li>
+        </ul>
+      </body>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="banner"></div>
+	  <div id="sidebar_container">
+
+      <div class = "container">
+        <!-- insert the page content here -->
+        <body style="margin:0;padding:0">
+            <a href="{% url 'new' %}">
+                <h2> Agendar una cita </h2>
+            </a>
+            <a href="{% url 'show' %}">
+                <h2> Eliminar una cita </h2>
+            </a>
+            <a href="{% url 'show' %}">
+                <h2> Modificar una cita </h2>
+            </a>
+        </body>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

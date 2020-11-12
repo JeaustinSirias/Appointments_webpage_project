@@ -31,6 +31,8 @@ LOGOUT_REDIRECT_URL = '/homepage'
 
 
 # Application definition
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'application.apps.ApplicationConfig',
     'widget_tweaks',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
