@@ -5,10 +5,10 @@
 
 <head>
   <title>Kyrat</title>
-  <meta name="description" content="website description" />
+  <meta name="description" content="Registro Civil" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="/style/style.css" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
 </head>
 <style>
     #login {
@@ -28,7 +28,7 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="/homepage.html">Bienvenido a la página de citas del registro civil de<span class="logo_colour"> Kyrat</span></a></h1>
+          <h1><a href="{% url 'homepage' %}">Bienvenido a la página de citas del registro civil de<span class="logo_colour"> Kyrat</span></a></h1>
           <h2>Agende su cita pronto</h2>
         </div>
       </div>
@@ -67,7 +67,6 @@
 
       <div class = "container">
         <!-- insert the page content here -->
-        <body style="margin:0;padding:0">
             <a href="{% url 'new' %}">
                 <h2> Agendar una cita </h2>
             </a>
@@ -77,8 +76,6 @@
             <a href="{% url 'show' %}">
                 <h2> Modificar una cita </h2>
             </a>
-        </body>
-
       </div>
     </div>
   </div>
