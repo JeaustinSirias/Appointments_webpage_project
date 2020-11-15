@@ -20,6 +20,8 @@ from application import views
 from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from django.contrib.auth import urls
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 # Do no forget to add the '/' in paths' names
@@ -32,5 +34,4 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('delete-cite/<id>', views.delete_appointment, name='delete'),
     path('accounts/', include('django.contrib.auth.urls')),
-]
-
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

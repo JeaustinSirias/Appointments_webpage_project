@@ -1,3 +1,6 @@
+
+{% load static %}
+
 <!DOCTYPE HTML>
 {% load widget_tweaks %}
 {% load crispy_forms_tags %}
@@ -7,8 +10,8 @@
   <title>Kyrat</title>
   <meta name="description" content="Registro Civil" />
   <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'styles/styles.css'%}"/>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <style>
     #login {
@@ -22,19 +25,19 @@
         margin: 0 8px;
     }
 </style>
-<body>
+<body style="background-color:OldLace;font-family:Copperplate;">
   <div id="main">
     <div id="header">
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="{% url 'homepage' %}">Bienvenido a la página de citas del registro civil de<span class="logo_colour"> Kyrat</span></a></h1>
-          <h2>Agende su cita pronto</h2>
+          <h1 align="center"><a href="{% url 'homepage' %}">Bienvenido a la página de citas del registro civil de<span class="logo_colour"> Kyrat</span></a></h1>
+          <h2 align="center"><font  size="2">Agende su cita pronto</font></h2>
         </div>
       </div>
       <div id="menubar">
 
-        <body>
+        <body><h3 align="right"><font size="2" face="Verdana, helvetica, sans serif">
         <ul id="login">
           <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li class="selected"><a href="{% url 'homepage' %}">Principal</a></li>
@@ -57,7 +60,7 @@
 
           <li><a href="/contact.html">Contáctenos</a></li>
         </ul>
-      </body>
+      </font></h3></body>
       </div>
     </div>
     <div id="content_header"></div>
@@ -65,16 +68,16 @@
       <div id="banner"></div>
 	  <div id="sidebar_container">
 
-      <div class = "container">
+      <div class = "container" align="center">
         <!-- insert the page content here -->
             <a href="{% url 'new' %}">
-                <h2> Agendar una cita </h2>
+                <h2><font size = "5"> Agendar una cita </font></h2>
             </a>
             <a href="{% url 'show' %}">
-                <h2> Eliminar una cita </h2>
+                <h2><font size = "5"> Eliminar una cita </font></h2>
             </a>
             <a href="{% url 'show' %}">
-                <h2> Modificar una cita </h2>
+                <h2><font size = "5"> Modificar una cita </font></h2>
             </a>
       </div>
     </div>
