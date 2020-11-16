@@ -46,19 +46,16 @@
           <li>
               Usuario: {{user.username}}
           </li>
-          <li>
-              <a href="{% url '/account/logout'}">Cerrar sesión</a>
-          </li>
+          <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
 
           {% else %}
-
             <li><a href="{% url 'signup' %}">Registrarse</a></li>
             <li><a href="{% url 'login' %}">Ingresar</a></li>
 
           {% endif %}
 
 
-          <li><a href="/contact.html">Contáctenos</a></li>
+          
         </ul>
       </font></h3></body>
       </div>

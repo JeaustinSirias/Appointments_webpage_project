@@ -1,25 +1,18 @@
-import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import appointment
 from .forms import CiteForm, SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-
-def sample(request):
-    '''Displays a default for not 
-    asigned view'''
-    date = datetime.datetime.utcnow()
-    return HttpResponse('Vista no asignada\nHora: %s' %date)
 #=========================================================================
 def homepage(request):
-    '''A view dedicate to the main page
+    '''A view dedicated to the main page
     creation where is shown all the options
     that users have.
 
-    :param request: the request call
-    :return: the HTML page rendering
+    :param request: the request callout
+    :return: the HTML homepage rendering
     '''
     return render(request, 'homepage.html')
 #=========================================================================
@@ -127,20 +120,16 @@ def modify_appointment(request, id):
     :param id: the primary key of the appointment to modify
     :return: the rendered appointment HTML update form
     '''
-    #warnings
-    none_note = 'No hay disponibilidad para la fecha elegida.'
-    invalid_note = 'Solicitud no válida. Vuelva a intentarlo.'
-    success_note = 'Se ha actualizado la cita exitosamente'
-
+    success_note = ''
     appoint = appointment.objects.get(id=id)
     renew_form = CiteForm(instance=appoint)
-    #actual_date = renew_form.cleaned_data.get('date')
     if request.method == 'POST':
         form = CiteForm(data=request.POST, instance=appoint)
         if form.is_valid():
             date = form.cleaned_data.get('date')
             for item in appointment.objects.all():
                 if date == item.date:
+                    none_note = 'No hay disponibilidad para la fecha elegida.'
                     return render(
                         request, 
                         'modify.html', 
@@ -149,10 +138,12 @@ def modify_appointment(request, id):
                             'note': none_note,
                         }
                     )
+            success_note = 'Se ha actualizado la cita exitosamente'
             form.save()
             renew_form = form
 
         else:
+            invalid_note = 'Solicitud no válida. Vuelva a intentarlo.'
             return render(
                 request,
                 'modify.html',
@@ -183,3 +174,4 @@ def delete_appointment(request, id):
     form = appointment.objects.get(id=id)
     form.delete()
     return redirect(to='show')
+#=========================================================================

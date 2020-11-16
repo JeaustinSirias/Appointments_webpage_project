@@ -1,3 +1,12 @@
+
+#############################################################
+#							                                #
+#              Generic webpage Django Project		        #
+#	           Jeaustin Sirias & Felipe Cortes 		        #
+#                    Copyright (C) 2020		                #
+#							                                #
+#############################################################
+
 FROM python:3.7-alpine
 
 #Setup the python unbuffered enviroment variable
@@ -12,10 +21,5 @@ COPY Requirements.txt /proyecto/
 RUN pip install -r Requirements.txt
 COPY . /proyecto/
 
-#LO QUE FALTA ES UBICAR LA CARPEYA /PROYECTO CUANDO EL
-#CONTENEDOR ESTE CORRIENDO Y usar make run para ver si
-#funciona O BIEN, VER SI YA LE EJECUTA EL SERVER DE UNA
-
 EXPOSE 8000
-
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

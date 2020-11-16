@@ -17,4 +17,8 @@ require: # Install requirements
 run: # Run project
 	python3 manage.py runserver
 
-unittest:
+container: #creates a docker images and runs a container
+	sudo docker build --tag proyecto_2 . \
+	&& sudo docker run -p 8080:80 proyecto_2
+
+

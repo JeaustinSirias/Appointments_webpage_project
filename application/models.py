@@ -1,14 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-'''
-class usuario(models.Model):
-    user = models.OneToOneField(User, related_name='usuarios')
-    first_name = models.CharField(max_length=30)
-    #username = models.CharField(max_length=15)
-    #password = models.CharField(max_length=10)
-'''
-
 DEPENDANT = [('Asesor 1', 'Ana Maria')]
 class appointment(models.Model):
     '''The appointment model with its respective
