@@ -28,3 +28,9 @@ O bien, digite el siguiente comando, si desea construir una imagen de Docker e i
 ```
 $ make container
 ```
+---
+Observaciones
+---
+El proyecto cuenta con un usuario administrativo por defecto con los siguientes credenciales:
+* nombre de usuario **admin**
+* Contraseña: **admin**
