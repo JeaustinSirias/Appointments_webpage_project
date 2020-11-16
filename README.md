@@ -32,5 +32,5 @@ $ make container
 Observaciones
 ---
 El proyecto cuenta con un usuario administrativo por defecto con los siguientes credenciales:
-* nombre de usuario **admin**
+* nombre de usuario: **admin**
 * Contraseña: **admin**
