@@ -1,7 +1,7 @@
 #############################################################
 #							    #
-#         Generic webpage Django Project		    #
-#	  Jeaustin Sirias Chacon (jeaustin.sirias@ucr.ac.c) #
+#              Generic webpage Django Project		    #
+#	       Jeaustin Sirias & Felipe Cortes 		    #
 #                     Copyright (C) 2020		    #
 #							    #
 #############################################################
@@ -14,11 +14,11 @@ SOURCE = ./source/
 require: # Install requirements
 	pip install -r requirements.txt
 
-run: # Run without installing
-	python3 -m test
+run: # Run project
+	python3 manage.py runserver
 
-install: # Install and run
-	python3 setup.py install \
-	&& runfile
+container: #creates a docker images and runs a container
+	sudo docker build --tag proyecto_2 . \
+	&& sudo docker run -p 8080:80 proyecto_2
 
-unittest:
+

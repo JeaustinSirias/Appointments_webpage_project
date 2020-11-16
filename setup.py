@@ -8,9 +8,8 @@ with open('LICENSE') as legal:
     license = legal.read()
 
 setup(
-    name='civil-registering',
-    packages=['test'],
-    entry_points={'console_scripts': ['runfile = source.build:main']},
+    name='civil-registering-Django-project',
+    packages=['test', 'project', 'application'],
     version='1.0.0',
     description='This is a webpage built with Django framework',
     long_description=readme,

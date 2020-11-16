@@ -1,0 +1,24 @@
+{% load widget_tweaks %}
+
+<head>
+  <title>Citas</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  </head>
+  <body style="background-color:BlanchedAlmond;font-family:Copperplate;">
+<div class="container">
+    <h1><font size="10">Sus citas</font></h1>
+        {% for name, item in appoint_dict.items %}
+        <h3><font size="4">
+            Hay una cita a nombre de {{name}}, el {{item.date}}
+            <a href="{% url 'modify' item.pk %}">Modificar</a>
+            <a href="{% url 'delete' item.pk %}">Eliminar</a>
+        </font></h3>
+        {% endfor %}
+
+        <hr/>
+        <a href="{% url 'homepage' %}">Regresar al inicio</a>
+        <hr/>
+        <a href="{% url 'logout' %}">Cerrar sesión</a>
+</body>
+</div>
